@@ -1,4 +1,8 @@
 function bowlerWithBestEconomyInSuperOver(deliveryData) {
+  if (deliveryData === undefined || !Array.isArray(deliveryData)) {
+    return {};
+  }
+  //Here finding total runs given by bowler and total ball bowled by bowler in super over;
   const totalBallsByBowler = {};
   const runsGivenByBowler = deliveryData.reduce((runsByBowler, delivery) => {
     const { is_super_over, bowler, total_runs } = delivery;
@@ -18,6 +22,7 @@ function bowlerWithBestEconomyInSuperOver(deliveryData) {
     }
     return runsByBowler;
   }, {});
+  // here getting  economy of bowler;
   const economyOfBowler = {};
   for (let key in runsGivenByBowler) {
     const calculateEconomy = (
@@ -26,10 +31,12 @@ function bowlerWithBestEconomyInSuperOver(deliveryData) {
     ).toFixed(3);
     economyOfBowler[key] = calculateEconomy;
   }
+
   let bowlerName = Object.keys(economyOfBowler);
   let bowlerEconomy = Object.values(economyOfBowler);
   let bowlerEconomyCopy = [...bowlerEconomy];
 
+  // getting best economy of bowler;
   let bestEconomy = bowlerEconomyCopy
     .sort((a, b) => {
       return a - b;
