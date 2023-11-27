@@ -14,4 +14,3 @@ const playersWithMaximumPomEachSeason =
 const jsonString = JSON.stringify(playersWithMaximumPomEachSeason, null, 2);
 fs.writeFileSync(filePath, jsonString, "utf-8");
 console.log(playersWithMaximumPomEachSeason);
-//Find the strike rate of a batsman for each season

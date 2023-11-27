@@ -30,7 +30,7 @@ function top10EconomicalBowler2015(matchData, deliveryData) {
   for (let key in totalRunsByBower) {
     let totalBall = totalBallBowlByBowler[key];
     let totalRuns = totalRunsByBower[key];
-    let netEconomy = ((totalRuns * 6) / totalBall).toFixed(3);
+    let netEconomy = ((totalRuns * 6) / totalBall).toFixed(2);
     economy.push({ [key]: netEconomy });
   }
 
