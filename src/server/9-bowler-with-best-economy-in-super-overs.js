@@ -31,21 +31,16 @@ function bowlerWithBestEconomyInSuperOver(deliveryData) {
     ).toFixed(3);
     economyOfBowler[key] = calculateEconomy;
   }
-
+  // Finding the bowler with the best economy
   let bowlerName = Object.keys(economyOfBowler);
   let bowlerEconomy = Object.values(economyOfBowler);
-  let bowlerEconomyCopy = [...bowlerEconomy];
+  let indexOfBestBowler = bowlerEconomy.indexOf(
+    Math.min(...bowlerEconomy).toFixed(3)
+  );
 
-  // getting best economy of bowler;
-  let bestEconomy = bowlerEconomyCopy
-    .sort((a, b) => {
-      return a - b;
-    })
-    .slice(0, 1);
-
-  const indexOfBestBowler = bowlerEconomy.indexOf(bestEconomy[0]);
+  // getting best economy of  best bowler;
   const bestBowlerWithBestEconomyInSuperOver = {
-    [bowlerName[indexOfBestBowler]]: bestEconomy[0],
+    [bowlerName[indexOfBestBowler]]: bowlerEconomy[indexOfBestBowler],
   };
   return bestBowlerWithBestEconomyInSuperOver;
 }
