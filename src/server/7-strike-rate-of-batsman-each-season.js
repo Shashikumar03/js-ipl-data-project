@@ -1,10 +1,16 @@
 function strikeRateOfBatsmanEachSeason(matchData, deliveryData) {
+  if (matchData === undefined || deliveryData === undefined ||
+    !Array.isArray(matchData) || !Array.isArray(deliveryData)) {
+    return {};
+  }
+  //creating an object of idAndSeason from matchData;
   const idAndSeasons = matchData.reduce((matchIdAndSeason, match) => {
     const { id, season } = match;
     matchIdAndSeason[id] = season;
     return matchIdAndSeason;
   }, {});
 
+  //finding batsman season wise runs and also batsman season wise ball played;
   const ballFacedPerSeasonByBatsman = {};
   const batsmanRunSeasonWise = deliveryData.reduce((batsManRun, delivery) => {
     const { match_id, batsman, batsman_runs, wide_runs } = delivery;
