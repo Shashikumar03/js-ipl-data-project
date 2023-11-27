@@ -1,21 +1,21 @@
 function matchWonPerTeamPerYear(matchData) {
-  if (!matchData) {
-    return;
+  if (matchData === undefined ||!Array.isArray(matchData)) {
+    return {};
   }
 
-  const matchWon = matchData.reduce((accumulator, match) => {
+  const matchWon = matchData.reduce((matchWonPerSeason, match) => {
     const { season, winner } = match;
-    if (accumulator[season]) {
-      if (accumulator[season][winner]) {
-        accumulator[season][winner]++;
+    if (matchWonPerSeason[season]) {
+      if (matchWonPerSeason[season][winner]) {
+        matchWonPerSeason[season][winner]++;
       } else {
-        accumulator[season][winner] = 1;
+        matchWonPerSeason[season][winner] = 1;
       }
     } else {
-      accumulator[season] = {};
-      accumulator[season][winner] = 1;
+      matchWonPerSeason[season] = {};
+      matchWonPerSeason[season][winner] = 1;
     }
-    return accumulator;
+    return matchWonPerSeason;
   }, {});
   return matchWon;
 }
