@@ -3,7 +3,10 @@ const matchData = require("../matches.json");
 const fs = require("fs");
 const path = require("path");
 
-const filePath = path.resolve(__dirname,"../src/public/output/top10EconomicalBowler2015.json");
+const filePath = path.resolve(
+  __dirname,
+  "../src/public/output/top10EconomicalBowler2015.json"
+);
 
 const top10EconomicalBowler2015 = require("../src/server/4-top-10-economical-bowler2015");
 
