@@ -11,6 +11,7 @@ function teamWonTossAndMatch(matchData) {
       }
       return teamRecords;
     }, {});
+
   return teamsWiningRecords;
 }
 module.exports = teamWonTossAndMatch;

@@ -33,10 +33,9 @@ function top10EconomicalBowler2015(matchData, deliveryData) {
     let netEconomy = ((totalRuns * 6) / totalBall).toFixed(3);
     economy.push({ [key]: netEconomy });
   }
-  
 
   const top10EconomicalBowlers = economy
-    .sort((a, b) => Object.values(a)[0] - Object.values(b)[0])
+    .sort((a, b) => Object.values(a) - Object.values(b))
     .slice(0, 10);
   return top10EconomicalBowlers;
 }

@@ -4,8 +4,7 @@ function strikeRateOfBatsmanEachSeason(matchData, deliveryData) {
     matchIdAndSeason[id] = season;
     return matchIdAndSeason;
   }, {});
-  let c = 0;
-
+  
   const ballFacedPerSeasonByBatsman = {};
   const batsmanRunSeasonWise = deliveryData.reduce((batsManRun, delivery) => {
     const { match_id, batsman, batsman_runs, wide_runs } = delivery;
@@ -40,10 +39,7 @@ function strikeRateOfBatsmanEachSeason(matchData, deliveryData) {
     }
     return batsManRun;
   }, {});
-  // bb = Object.entries(ballFacedPerSeasonByBatsman);
-  // console.log(bb);
-  // return;
-  // console.log(ballFacedPerSeasonByBatsman);
+  // calculating strike rate
   for (let keyA in batsmanRunSeasonWise) {
     let seasonRuns = batsmanRunSeasonWise[keyA];
     let ballfaced = ballFacedPerSeasonByBatsman[keyA];
