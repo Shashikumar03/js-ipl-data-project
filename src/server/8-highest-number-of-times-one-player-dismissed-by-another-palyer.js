@@ -2,35 +2,39 @@ function highestNumberOfTimesOnePlayerDismissedByAnotherPlayer(deliveryData) {
   if (deliveryData === undefined || !Array.isArray(deliveryData)) {
     return;
   }
-  const answer = deliveryData.reduce((wicketByBowler, delivery) => {
-    const { bowler, batsman, player_dismissed } = delivery;
+    // finding object of bolwer with value, value is also a object of player name as key and number of times dismissed by same bowler;
+  const numerOfTimesBowlerDismissedBatsman = deliveryData.reduce(
+    (wicketByBowler, delivery) => {
+      const { bowler, batsman, player_dismissed } = delivery;
 
-    if (player_dismissed !== undefined && player_dismissed !== "") {
-      if (wicketByBowler[bowler]) {
-        if (wicketByBowler[bowler][player_dismissed]) {
-          wicketByBowler[bowler][player_dismissed] += 1;
+      if (player_dismissed !== undefined && player_dismissed !== "") {
+        if (wicketByBowler[bowler]) {
+          if (wicketByBowler[bowler][player_dismissed]) {
+            wicketByBowler[bowler][player_dismissed] += 1;
+          } else {
+            wicketByBowler[bowler][player_dismissed] = 1;
+          }
         } else {
+          wicketByBowler[bowler] = {};
           wicketByBowler[bowler][player_dismissed] = 1;
         }
-      } else {
-        wicketByBowler[bowler] = {};
-        wicketByBowler[bowler][player_dismissed] = 1;
       }
-    }
-    return wicketByBowler;
-  }, {});
-    
+      return wicketByBowler;
+    },
+    {}
+  );
+
   let maxValue = 0;
   let batsmanName = "";
-    let bowlerName = "";
-    
-  for (let key in answer) {
-    let a = answer[key];
-    for (let keyA in a) {
-      if (a[keyA] > maxValue) {
-        maxValue = a[keyA];
+  let bowlerName = "";
+
+  for (let keyB in numerOfTimesBowlerDismissedBatsman) {
+    let batsmanDissmissal = numerOfTimesBowlerDismissedBatsman[keyB];
+    for (let keyA in batsmanDissmissal) {
+      if (batsmanDissmissal[keyA] > maxValue) {
+        maxValue = batsmanDissmissal[keyA];
         batsmanName = keyA;
-        bowlerName = key;
+        bowlerName = keyB;
       }
     }
   }
@@ -39,8 +43,8 @@ function highestNumberOfTimesOnePlayerDismissedByAnotherPlayer(deliveryData) {
     [bowlerName]: maxValue,
   };
   const numberOfTimesAPlayerDismissesByAnother = {
-    [batsmanName]: bowlerAndNumberOfTimes,
+    [batsmanName]: bowlerAndNumberOfTimes
   };
-    return numberOfTimesAPlayerDismissesByAnother;
+  return numberOfTimesAPlayerDismissesByAnother;
 }
 module.exports = highestNumberOfTimesOnePlayerDismissedByAnotherPlayer;
