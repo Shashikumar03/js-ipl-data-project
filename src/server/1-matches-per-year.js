@@ -2,15 +2,16 @@ function matchPerYear(matchData) {
   if (matchData === undefined || !Array.isArray(matchData)) {
     return {};
   } else {
-    const matchPlayed = matchData.reduce((accumudator, match) => {
-      if (accumudator[match.season]) {
-        accumudator[match.season] += 1;
+    const matchPlayedPerYear = matchData.reduce((totalMatchPerYear, match) => {
+      const { season } = match;
+      if (totalMatchPerYear[season]) {
+        totalMatchPerYear[season] += 1;
       } else {
-        accumudator[match.season] = 1;
+        totalMatchPerYear[season] = 1;
       }
-      return accumudator;
+      return totalMatchPerYear;
     }, {});
-    return matchPlayed;
+    return matchPlayedPerYear;
   }
 }
 module.exports = { matchPerYear };
