@@ -4,39 +4,38 @@ function strikeRateOfBatsmanEachSeason(matchData, deliveryData) {
     matchIdAndSeason[id] = season;
     return matchIdAndSeason;
   }, {});
-  
+
   const ballFacedPerSeasonByBatsman = {};
   const batsmanRunSeasonWise = deliveryData.reduce((batsManRun, delivery) => {
     const { match_id, batsman, batsman_runs, wide_runs } = delivery;
-    for (let key in idAndSeasons) {
-      const season = parseInt(idAndSeasons[key]);
-      if (match_id === key) {
-        const batsmanRun = parseInt(batsman_runs);
-        if (batsManRun[batsman]) {
-          if (batsManRun[batsman][season]) {
-            batsManRun[batsman][season] += batsmanRun;
-          } else {
-            batsManRun[batsman][season] = batsmanRun;
-          }
+
+    const season = parseInt(idAndSeasons[match_id]);
+
+    const batsmanRun = parseInt(batsman_runs);
+    if (batsManRun[batsman]) {
+      if (batsManRun[batsman][season]) {
+        batsManRun[batsman][season] += batsmanRun;
+      } else {
+        batsManRun[batsman][season] = batsmanRun;
+      }
+    } else {
+      batsManRun[batsman] = {};
+      batsManRun[batsman][season] = batsmanRun;
+    }
+    // finding ball played by a batsman;
+    if (wide_runs === "0") {
+      if (ballFacedPerSeasonByBatsman[batsman]) {
+        if (ballFacedPerSeasonByBatsman[batsman][season]) {
+          ballFacedPerSeasonByBatsman[batsman][season] += 1;
         } else {
-          batsManRun[batsman] = {};
-          batsManRun[batsman][season] = batsmanRun;
+          ballFacedPerSeasonByBatsman[batsman][season] = 1;
         }
-        // finding ball played by a batsman;
-        if (wide_runs === "0") {
-          if (ballFacedPerSeasonByBatsman[batsman]) {
-            if (ballFacedPerSeasonByBatsman[batsman][season]) {
-              ballFacedPerSeasonByBatsman[batsman][season] += 1;
-            } else {
-              ballFacedPerSeasonByBatsman[batsman][season] = 1;
-            }
-          } else {
-            ballFacedPerSeasonByBatsman[batsman] = {};
-            ballFacedPerSeasonByBatsman[batsman][season] = 1;
-          }
-        }
+      } else {
+        ballFacedPerSeasonByBatsman[batsman] = {};
+        ballFacedPerSeasonByBatsman[batsman][season] = 1;
       }
     }
+
     return batsManRun;
   }, {});
   // calculating strike rate
