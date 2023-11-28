@@ -4,6 +4,7 @@ function teamWonTossAndMatch(matchData) {
   if (matchData === undefined || !Array.isArray(matchData)) {
     return {};
   }
+
   const teamsWiningRecords = matchData
     .filter((match) => match.winner === match.toss_winner)
     .reduce((teamRecords, match) => {

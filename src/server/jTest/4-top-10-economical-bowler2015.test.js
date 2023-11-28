@@ -12,15 +12,22 @@ describe("top10EconomicalBowler2015", () => {
       { id: 1, season: 2015 },
       { id: 2, season: 2015 },
       { id: 3, season: 2016 },
+      { id: 4, season: 2016 },
     ];
     const deliveryData = [
       { match_id: 1, bowler: "shashi", total_runs: 1 },
       { match_id: 2, bowler: "shashi", total_runs: 2 },
       { match_id: 1, bowler: "amit", total_runs: 5 },
       { match_id: 3, bowler: "lalu", total_runs: 1 },
+      { match_id: 4, bowler: "lalu", total_runs: 1 },
+      { match_id: 1, bowler: "lalu", total_runs: 4 },
     ];
     const result = top10EconomicalBowler2015(matchData, deliveryData);
-    const expectedResult = [{ "shashi": "9.00" }, { amit: "30.00" }];
+    const expectedResult = [
+      { shashi: "9.00" },
+      { lalu: "24.00" },
+      { amit: "30.00" },
+    ];
 
     expect(result).toEqual(expectedResult);
   });

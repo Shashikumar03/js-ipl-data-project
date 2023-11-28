@@ -9,16 +9,9 @@ function top10EconomicalBowler2015(matchData, deliveryData) {
   }
 
   //finding ids of matches played in 2015;
-  const idOf2015 = [];
-  matchData.filter((match) => {
-    const { id, season } = match;
-    const year = parseInt(season);
-
-    if (year === 2015) {
-      idOf2015.push(id);
-    }
-    return match;
-  });
+  const idOf2015 = matchData
+    .filter((match) => parseInt(match.season) === 2015)
+    .map((match) => match.id);
 
   //find total balls and total runs given by bowler;
   const totalBallBowlByBowler = {};

@@ -7,10 +7,14 @@ describe("extraRunConcededByTeam2016", () => {
     expect(extraRunConcededByTeam2016({}, {})).toEqual({});
   });
   test("check extra run conceeded by each team", () => {
-    const matchData = [{ id: 1, season: "2016" }];
+    const matchData = [
+      { id: 1, season: "2016" },
+      { id: 2, season: "2017" },
+    ];
 
     const deliveryData = [
-      { match_id: 1, bowling_team: "TeamA", extra_runs: "5" },
+      { match_id: 1, bowling_team: "TeamA", extra_runs: 5 },
+      { match_id: 1, bowling_team: "TeamA", extra_runs: "10" },
       { match_id: 1, bowling_team: "TeamB", extra_runs: "10" },
       { match_id: 2, bowling_team: "TeamA", extra_runs: "8" },
       { match_id: 2, bowling_team: "TeamC", extra_runs: "7" },
@@ -18,7 +22,7 @@ describe("extraRunConcededByTeam2016", () => {
     ];
 
     const expectedResult = {
-      TeamA: 5,
+      TeamA: 15,
       TeamB: 10,
     };
 
