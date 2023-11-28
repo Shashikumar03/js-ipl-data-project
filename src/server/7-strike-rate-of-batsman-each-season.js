@@ -14,7 +14,7 @@ function strikeRateOfBatsmanEachSeason(matchData, deliveryData) {
   const ballFacedPerSeasonByBatsman = {};
   const batsmanRunSeasonWise = deliveryData.reduce((batsManRun, delivery) => {
     const { match_id, batsman, batsman_runs, wide_runs } = delivery;
-
+  
     const season = parseInt(idAndSeasons[match_id]);
 
     const batsmanRun = parseInt(batsman_runs);
