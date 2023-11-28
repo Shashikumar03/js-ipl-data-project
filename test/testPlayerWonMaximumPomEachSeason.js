@@ -1,11 +1,12 @@
 const matchData = require("../matches.json");
 const fs = require("fs");
+const playerWonMaximumPomEachSeason = require("../src/server/6-player-won-maximum-pom-each-season");
+
 const path = require("path");
 const filePath = path.resolve(
   __dirname,
   "../src/public/output/playerWonMaximumPomEachSeason.json"
 );
-const playerWonMaximumPomEachSeason = require("../src/server/6-player-won-maximum-pom-each-season");
 
 const playersWithMaximumPomEachSeason =
   playerWonMaximumPomEachSeason(matchData);
