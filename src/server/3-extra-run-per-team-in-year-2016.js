@@ -1,4 +1,7 @@
 function extraRunConcededByTeam2016(matchData, deliveryData) {
+  if (matchData === undefined || deliveryData === undefined || !Array.isArray(matchData) || !Array.isArray(deliveryData)) {
+    return {};
+  }
   const idOf2016 = [];
   matchData.filter((match) => {
     const { id, season } = match;

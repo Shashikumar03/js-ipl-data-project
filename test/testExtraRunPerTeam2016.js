@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const deliveryData = require("../deliveries.json");
 const matchData = require("../matches.json");
-const extraRunConcededByTeam2016 = require("../src/server/3-extra-run-per-team-per-year-2016");
+const extraRunConcededByTeam2016 = require("../src/server/3-extra-run-per-team-in-year-2016");
 
 const filePath = path.resolve(
   __dirname,
