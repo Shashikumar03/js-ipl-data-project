@@ -1,13 +1,25 @@
 function top10EconomicalBowler2015(matchData, deliveryData) {
+  if (
+    matchData === undefined ||
+    deliveryData === undefined ||
+    !Array.isArray(matchData) ||
+    !Array.isArray(deliveryData)
+  ) {
+    return {};
+  }
+
   //finding ids of matches played in 2015;
   const idOf2015 = [];
   matchData.filter((match) => {
     const { id, season } = match;
-    if (season === "2015") {
+    const year = parseInt(season);
+
+    if (year === 2015) {
       idOf2015.push(id);
     }
     return match;
   });
+
   //find total balls and total runs given by bowler;
   const totalBallBowlByBowler = {};
   const totalRunsByBower = deliveryData.reduce((runsByBowler, delivery) => {
@@ -33,7 +45,7 @@ function top10EconomicalBowler2015(matchData, deliveryData) {
     let netEconomy = ((totalRuns * 6) / totalBall).toFixed(2);
     economy.push({ [key]: netEconomy });
   }
-
+  // finding top 10 blower eith best economy
   const top10EconomicalBowlers = economy
     .sort((a, b) => Object.values(a) - Object.values(b))
     .slice(0, 10);
